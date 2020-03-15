@@ -5,8 +5,10 @@ import java.util.Objects;
 
 public class Presenca {
 
+    private int id;
     private Aluno aluno;
     private Boolean presente = false;
+
 
     public Presenca(Aluno aluno) {
         this.aluno = aluno;
@@ -17,11 +19,23 @@ public class Presenca {
         return aluno;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object obj) {
+
         if (obj instanceof Presenca){
             Presenca casting = (Presenca) obj;
-            return this.getAluno().getNome().equals(casting.getAluno().getNome());
+            boolean temMesmoNome = this.getAluno().getNome().equals(casting.getAluno().getNome());
+            boolean temMesmoId = this.id == casting.getId();
+            boolean mesmaPresenca = temMesmoNome && temMesmoId;
+            return mesmaPresenca;
         }
 
         return false;

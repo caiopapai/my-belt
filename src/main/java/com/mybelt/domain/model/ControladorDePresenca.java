@@ -12,15 +12,22 @@ public class ControladorDePresenca {
         presencas = new ArrayList<Presenca>();
     }
 
-    public void add(Presenca presenca) {
+    public void adicionaPresenca(Presenca presenca) {
         presencas.add(presenca);
     }
 
 
-    public final Presenca getPresenca(Aluno aluno) {
-        return this.presencas
+    public final int getQuantidadeDePresencas(Aluno aluno) {
+        return (int) this.presencas
                 .stream()
-                .filter(presenca -> presenca.getAluno().equals(aluno))
-                .collect(Collectors.toList()).get(0);
+                .filter(presenca -> presenca.getAluno().equals(aluno)).count();
+    }
+
+    public void removePresenca(Presenca presenca) {
+        this.presencas.remove(presenca);
+    }
+
+    public void adicionaPresencas(List<Presenca> presencas) {
+        this.presencas.addAll(presencas);
     }
 }
